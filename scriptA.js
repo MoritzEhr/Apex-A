@@ -1197,6 +1197,18 @@ function trackPurchaseCompleted() {
         currency: 'EUR'
       });
 
+      console.log('Tracking-Ereignis:', {
+        transaction_id: transactionId,
+        uid_token: uid,
+        tip_percentage: tipPercentage,
+        bestseller_count: countBestsellers(),
+        has_insurance: cartState.hasInsurance,
+        is_co2_neutral: cartState.isCO2Neutral,
+        has_subscription: cartState.hasSubscription,
+        total_value: totals.total,
+        currency: 'EUR'
+      });
+
 
     } else {
       console.error('gtag ist nicht verfügbar! Stellen Sie sicher, dass Google Analytics korrekt geladen wurde.');
