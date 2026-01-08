@@ -453,7 +453,7 @@ function getTotalPrice() {
   return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
-const MINIMUM_ORDER_VALUE = 20; // Mindestbestellwert in Euro
+const MINIMUM_ORDER_VALUE = 15; // Mindestbestellwert in Euro
 
 function getCartTotals() {
   const subtotal = getTotalPrice();
