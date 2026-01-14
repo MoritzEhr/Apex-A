@@ -1171,10 +1171,19 @@ function countBestsellers() {
 /**
  * Hauptfunktion: Tracking-Event an GA4 senden
  */
+/**
+ * Erstelle eine kommaseparierte Liste aller Item-Namen im Warenkorb
+ * Beispiel: "Döner Box, Hähnchenschnitzel, Fanta"
+ */
+function getCartItemsList() {
+  return cart.map(item => item.name).join(', ');
+}
+
 function trackPurchaseCompleted() {
   try {
     // Sammle alle Daten aus dem aktuellen Cart-Status
     const totals = getCartTotals();
+    const itemList = getCartItemsList(); // Liste aller Items im Warenkorb
     const tipPercentage = Math.round(cartState.selectedTipPercent * 100); // In Prozent (z.B. 10 für 10%)
     const uid = getUrlParameter('uid'); // Hole uid aus URL
     const proid = getUrlParameter('proid'); // Hole proid aus URL
@@ -1200,7 +1209,8 @@ function trackPurchaseCompleted() {
         is_co2_neutral: cartState.isCO2Neutral,
         has_subscription: cartState.hasSubscription,
         total_value: totals.total,
-        currency: 'EUR'
+        currency: 'EUR',
+        item_list: itemList
       });
 
       console.log('Tracking-Ereignis:', {
